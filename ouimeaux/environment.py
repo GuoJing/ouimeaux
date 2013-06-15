@@ -61,9 +61,12 @@ class Environment(object):
         Start the server(s) necessary to receive information from devices.
         """
         if self._with_cache:
-            with get_cache() as c:
-                for dev in c.devices:
-                    self._process_device(dev, cache=False)
+            try:
+                with get_cache() as c:
+                    for dev in c.devices:
+                        self._process_device(dev, cache=False)
+            except:
+                pass
 
         if self._with_discovery:
             # Start the server to listen to new devices
