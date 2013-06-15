@@ -1,5 +1,3 @@
-import gevent
-from gevent.wsgi import WSGIServer
 
 from ouimeaux.environment import Environment
 
@@ -28,11 +26,13 @@ ss = [env.get_switch(s) for s in ss]
 print m
 print ss
 
-def call_back(v):
-    print 'tete'
-    print v
+def updated():
+    print 'Update'
+    for s in ss:
+        s.on()
+
+m.on_device_updated_on = updated
 
 registry.register(m)
-registry.on(m, 'BinaryState', call_back)
 
 env.wait()

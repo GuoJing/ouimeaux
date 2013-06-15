@@ -30,7 +30,20 @@ class Device(object):
             setattr(self, svcname, service)
 
     def _update_state(self, value):
+        print value
+        if int(value) == self._state:
+            return
         self._state = int(value)
+        if value:
+            self.on_device_updated_on()
+        else:
+            self.on_device_updated_off()
+
+    def on_device_updated_on(self):
+        pass
+
+    def on_device_updated_off(self):
+        pass
 
     def get_state(self, force_update=False):
         """
