@@ -23,7 +23,7 @@ functions called when a Switch or Motion device is identified::
     ...     print "Switch found!", switch.name
     ...
     >>> def on_motion(motion):
-    ...     print "Motion found!", switch.motion
+    ...     print "Motion found!", motion.name
     ...
     >>> env = Environment(on_switch, on_motion)
 
